@@ -1,25 +1,30 @@
-(function () {
-    // Create the button element
-    var button = document.createElement("button");
-    button.innerText = "Click Me";
-    
-    // Style the button
+// embbed_script.js
+
+(function() {
+    // Creating the button
+    const button = document.createElement('button');
+    button.innerText = "Click to Fetch Data";
     button.style.position = "fixed";
     button.style.bottom = "20px";
     button.style.right = "20px";
     button.style.padding = "10px 20px";
-    button.style.backgroundColor = "#007bff";
-    button.style.color = "white";
-    button.style.border = "none";
-    button.style.borderRadius = "5px";
-    button.style.cursor = "pointer";
-    button.style.boxShadow = "0px 4px 6px rgba(0, 0, 0, 0.1)";
-    
-    // Button click event
-    button.addEventListener("click", function () {
-        alert("Welcome to this new skill");
-    });
-    
-    // Append button to body
+    button.style.fontSize = "16px";
     document.body.appendChild(button);
+
+    // Function to fetch data when the button is clicked
+    button.addEventListener('click', function() {
+        fetchData();
+    });
+
+    // Function to get data from an API or any other source
+    async function fetchData() {
+        try {
+            const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+            const data = await response.json();
+            console.log(data);  // You can replace this with any functionality to use the data
+            alert('Data fetched! Check console.');
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
 })();
